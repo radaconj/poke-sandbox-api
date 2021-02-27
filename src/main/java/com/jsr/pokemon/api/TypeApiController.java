@@ -41,7 +41,7 @@ public class TypeApiController implements TypeApi {
 
     public ResponseEntity<List<String>> getTypes() {
         String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
+        if (accept != null && (accept.contains("application/json") || accept.contains("application/xml"))) {
             try {
                 ResponseEntity<List<String>> responseEntity = null;
                 Map<String,Object> typeRequest = pokemonService.getTypeList();

@@ -45,7 +45,7 @@ public class PokemonApiController implements PokemonApi {
 
     public ResponseEntity<Pokemon> getPokemonByName(@ApiParam(value = "Name of Pokemon to return",required=true) @PathVariable("pokemonName") String pokemonName) {
         String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
+        if (accept != null && (accept.contains("application/json") || accept.contains("application/xml"))) {
             try {
                 ResponseEntity<Pokemon> responseEntity = null;
                 Map<String,Object> pokeRequest = pokemonService.getPokemon(pokemonName);
@@ -64,7 +64,7 @@ public class PokemonApiController implements PokemonApi {
 
     public ResponseEntity<List<Pokemon>> getPokemonList() {
         String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
+        if (accept != null && (accept.contains("application/json") || accept.contains("application/xml"))) {
             try {
                 ResponseEntity<List<Pokemon>> responseEntity = null;
                 Map<String,Object> pokeRequest = pokemonService.getPokemonList();
